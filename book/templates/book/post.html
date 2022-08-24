@@ -1,0 +1,11 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+<h1>{{post.title}}</h1>
+
+{% if post.cover_image %}
+<p><img class="img-article-left" src="{{post.cover_image.url}}"></p>
+{% endif %}
+
+{{post.summary|linebreaks}}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+	{% for p in posts %}
+	<li>
+<div class="article-panel">
+	<p class="first">Категория: {{p.category}}</p>
+	<p class="last">Дата: {{p.date_add|date:"d-m-Y H:i:s"}}</p>
+</div>
+
+{% if p.cover_image %}
+	<a class="title" href="{{ p.get_absolute_url }}">
+		<p>
+			<img class="img-article-left thumb" src="{{p.cover_image.url}}">
+		</p>
+	</a>
+{% endif %}
+
+	<h1>{{p.title}}</h1>
+	<!--<a href="{{ p.get_absolute_url }}"><h1>{{p.title}}</h1></a>-->
+
+	{% autoescape on %}
+	{{p.summary|linebreaks|truncatewords:50}}
+	{% endautoescape %}
+			<div class="clear"></div>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
+
